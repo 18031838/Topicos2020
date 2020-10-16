@@ -1,0 +1,8 @@
+.root{
+    _fx-background-image : url("https://i.redd.it/btk0npfdyeg01.jpg", url("/sample/assets/cocalata.jpg"));
+    _fx-background-repeat: no-repeat;
+    _fx-background-size: cover, 250 300;
+    _fx-background-position: center;
+}
+
+.menu
