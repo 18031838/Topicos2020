@@ -18,8 +18,11 @@ import sample.events.EventosMemorama;
 public class Memorama extends Stage implements EventHandler {
 
 
-    private String[] arIma= {"cocalata.jpg","fantalata.png","pepsilata.png","sevenup.jpg","manzanita.jpg"};
+    private String[] arIma= {"cocalata.jpg","fantalata.png","pepsilata.png","sevenup.jpg","manzanita.jpg","dr.pepper.png"};
+    private String[] NumIma;
     private Label lblTarjetas;
+    private Label lblNintentos;
+    private Label lblNintentos2;
     private TextField txtNoTarjetas;
     private Button btnAceptar;
     private HBox hBox;
@@ -29,9 +32,10 @@ public class Memorama extends Stage implements EventHandler {
     private int nPares;
     private Button[][] arTarjetas;
     private String[][] arAsignacion;
+    private String[] intentos;
 
     public Memorama(){
-
+        //Se manda a llamar los metodos que correra el programa
         CrearUI();
         this.setTitle("Memorama :D");
         this.setScene(escena);
@@ -39,33 +43,30 @@ public class Memorama extends Stage implements EventHandler {
     }
 
     private void CrearUI() {
+        //se validan los elementos a usar en la ui
         lblTarjetas = new Label("Número de pares");
         txtNoTarjetas = new TextField();
         btnAceptar = new Button("Voltear y revolver");
+        lblNintentos=new Label("Número de intentos");
+        lblNintentos2=new Label();
         btnAceptar.addEventHandler(MouseEvent.MOUSE_CLICKED,this);
-        //btnAceptar.addEventHandler(MouseEvent.MOUSE_CLICKED,new EventosMemorama());
-        /*btnAceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Terver evento desde una clase anonima");
-            }
-        });*/
 
-
+        //se crea el hBox para poder contener y manipular el espacio y diseño de los
+        //elementos a usar
         hBox = new HBox();
-        hBox.getChildren().addAll(lblTarjetas,txtNoTarjetas,btnAceptar);
+        hBox.setFillHeight(false);
+        hBox.getChildren().addAll(lblTarjetas,txtNoTarjetas,btnAceptar,lblNintentos,lblNintentos2);
         hBox.setSpacing(10);
 
         gdpMesa = new GridPane();
         vBox = new VBox();
         vBox.getChildren().addAll(hBox,gdpMesa);
 
-        escena = new Scene(vBox, 500, 500);
+        escena = new Scene(vBox,500,500);
     }
 
     @Override
     public void handle(Event event) {
-        //System.out.println("Este es mi primer evento");
         nPares = Integer.parseInt(txtNoTarjetas.getText());
 
         vBox.getChildren().remove(gdpMesa);
@@ -78,7 +79,7 @@ public class Memorama extends Stage implements EventHandler {
 
                 Image img=new Image("sample/assets/fondorojo.jpg");
                 ImageView inv=new ImageView(img);
-                inv.setFitHeight(80);
+                inv.setFitHeight(60);
                 inv.setPreserveRatio(true);
 
                 arTarjetas[i][j]=new Button();
@@ -86,9 +87,9 @@ public class Memorama extends Stage implements EventHandler {
                 int finalJ = j;
                 arTarjetas[i][j].setOnAction(event1->verTarjeta(finalI, finalJ));
                 arTarjetas[i][j].setGraphic(inv);
-                arTarjetas[i][j].setPrefSize(30,80);
+                arTarjetas[i][j].setPrefSize(30,30);
                 gdpMesa.add(arTarjetas[i][j],j,i);
-
+                numeroIntentos();
             }
         }
 
@@ -96,11 +97,17 @@ public class Memorama extends Stage implements EventHandler {
         vBox.getChildren().add(gdpMesa);
     }
 
-    private void verTarjeta(int finalI,int finalJ) {
+    private void numeroIntentos() {
+        int intentos=0;
+        intentos++;
+        String inten=Integer.toString(intentos);
+        lblNintentos2.setText(inten);
+    }
 
+    private void verTarjeta(int finalI,int finalJ) {
         Image img = new Image("sample/assets/"+arAsignacion[finalI][finalJ]);
         ImageView imv = new ImageView(img);
-        imv.setFitHeight(120);
+        imv.setFitHeight(60);
         imv.setPreserveRatio(true);
 
         arTarjetas[finalI][finalJ].setGraphic(imv);

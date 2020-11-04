@@ -1,8 +1,25 @@
+  
 .root{
-    _fx-background-image : url("https://i.redd.it/btk0npfdyeg01.jpg", url("/sample/assets/cocalata.jpg"));
-    _fx-background-repeat: no-repeat;
-    _fx-background-size: cover, 250 300;
-    _fx-background-position: center;
+    -fx-background-image : url("https://wallpaperaccess.com/full/398858.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, 250 300;
+    -fx-background-position: center;
 }
 
-.menu
+.menu-bar{
+    -fx-background-color: #0CA0FA;
+    -fx-border-color:  #FF3A00;
+    -fx-border-width: 2;
+}
+
+.menu-bar .label{
+    -fx-text-fill: white;
+}
+
+.menu:hover{
+    -fx-background-color: #CCC;
+}
+
+.menu-item .label{
+    -fx-text-fill: black;
+}

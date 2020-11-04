@@ -3,8 +3,6 @@ package sample;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -13,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.ui.Memorama;
+import sample.ui.Dashboard;
 import sample.ui.Taquimecanografo;
 
 public class Main extends Application implements EventHandler {
@@ -21,7 +20,7 @@ public class Main extends Application implements EventHandler {
 
     private MenuBar mnbPrincipal;
     private Menu menCompetencia1, menCompetencia2, menSalir;
-    private MenuItem itmMemorama, itmPractica2, itmTerminar;
+    private MenuItem itmMemorama, itmPractica2, itmRestaurante, itmTerminar;
     private Scene escena;
 
     private ToolBar tlbMenu;
@@ -37,6 +36,8 @@ public class Main extends Application implements EventHandler {
         primaryStage.addEventHandler(WindowEvent.WINDOW_HIDDEN,this);
         primaryStage.show();
 
+        //Conexion.crearConexion();
+        //PRONTO
         //new Memorama();
     }
 
@@ -58,10 +59,15 @@ public class Main extends Application implements EventHandler {
         itmPractica2 = new MenuItem("Taquimecanógrafo");
         itmPractica2.setOnAction(event -> opcionMenu(2));
 
+        itmRestaurante = new MenuItem("Restaurante");
+        itmRestaurante.setOnAction(event -> opcionMenu(3));
+
         itmTerminar = new MenuItem("Hasta pronto :)");
         itmTerminar.setOnAction(event -> { System.exit(0);});
+
         // Cargar el item Memorama al menu "competencia1"
         menCompetencia1.getItems().addAll(itmMemorama,itmPractica2);
+        menCompetencia2.getItems().addAll(itmRestaurante);
         menSalir.getItems().add(itmTerminar);
 
         // Crear una barra de herramientas
@@ -71,7 +77,7 @@ public class Main extends Application implements EventHandler {
         btnToolbar1.setPrefSize(35,35);
 
         // Asignamos la imagen al boton dentro del toolbar
-        Image img =new Image("sample/assets/sevenup.jpg");
+        Image img =new Image("sample/assets/memoria.png");
         ImageView imv = new ImageView(img);
         imv.setFitHeight(35);
         imv.setPreserveRatio(true);
@@ -82,14 +88,16 @@ public class Main extends Application implements EventHandler {
         vPrincipal = new VBox();
         vPrincipal.getChildren().addAll(mnbPrincipal,tlbMenu);
         escena = new Scene(vPrincipal);
-        escena.getStylesheets().add("../assets/css/main_styles.css");
+        //Clase de topicos que no funciona
+        escena.getStylesheets().add("sample/assets/css/main_styles.css");
+
     }
 
     private void opcionMenu(int opc) {
         switch(opc){
             case 1: new Memorama();         break;
             case 2: new Taquimecanografo(); break;
-            case 3: break;
+            case 3: new Dashboard(); break;
         }
     }
 
