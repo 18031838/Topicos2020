@@ -16,6 +16,7 @@ public class Conexion {
             Class.forName("org.mariadb.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mariadb://"+server+":3306/"+db,user,pwd);
         }catch(Exception e){
+            System.out.println("Si llegue");
             e.printStackTrace();
         }
     }

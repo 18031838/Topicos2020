@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import sample.models.Conexion;
 import sample.ui.Memorama;
 import sample.ui.Dashboard;
 import sample.ui.Taquimecanografo;
@@ -36,7 +37,7 @@ public class Main extends Application implements EventHandler {
         primaryStage.addEventHandler(WindowEvent.WINDOW_HIDDEN,this);
         primaryStage.show();
 
-        //Conexion.crearConexion();
+        Conexion.crearConexion();
         //PRONTO
         //new Memorama();
     }

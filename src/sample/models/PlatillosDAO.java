@@ -1,5 +1,11 @@
 package sample.models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class PlatillosDAO {
     private int id_platillo;
     private String nombre_platillo;
@@ -15,6 +21,7 @@ public class PlatillosDAO {
     }
 
     public String getNombre_platillo() {
+
         return nombre_platillo;
     }
 
@@ -31,6 +38,7 @@ public class PlatillosDAO {
     }
 
     public int getId_tipo() {
+
         return id_tipo;
     }
 
@@ -38,10 +46,51 @@ public class PlatillosDAO {
         this.id_tipo = id_tipo;
     }
 
-    public void insPlatillo(){}
+    public void insPlatillo(){
+        try{
+            String query = "INSERT INTO tbl_platillos(nombre_platillos,precio,id_tipo) values " +
+                    "('"+nombre_platillo+"',"+precio+","+id_tipo+")";
+            Statement stmt = Conexion.con.createStatement();
+            stmt.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     public void updPlatillo(){}
-    public void delPlatillo(){}
-    public void getAllPlatillo(){}
+    public void delPlatillo(){
+
+        try{
+            String query = "DELETE FROM tbl_platillos WHERE id_platillo ="+id_platillo;
+            Statement stmt= Conexion.con.createStatement();
+            stmt.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    public ObservableList<PlatillosDAO> getAllPlatillo(){
+
+        //Se crea la tabla que almacenara los datos
+        ObservableList<PlatillosDAO> listaP= FXCollections.observableArrayList();
+
+        try{
+            PlatillosDAO objP;
+            String query = "select * from tbl_platillos order by nombre_platillo";
+            Statement stmt = Conexion.con.createStatement();
+            ResultSet res=stmt.executeQuery(query);
+            while(res.next()){
+                objP=new PlatillosDAO();
+                objP.setId_platillo(res.getInt("id_platillo"));
+                objP.setNombre_platillo(res.getString("nombre_platillo"));
+                objP.setPrecio(res.getFloat("precio"));
+                objP.setId_tipo(res.getInt("id_tipo"));
+                listaP.add(objP);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return listaP;
+    }
     public void getPlatillo(){}
 
 }
