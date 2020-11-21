@@ -4,24 +4,23 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
-import sample.models.PlatillosDAO;
-import sample.ui.FrmPlatillos;
+import sample.models.TipoPlatilloDAO;
+import sample.ui.FrmTplatillos;
 
 import java.util.Optional;
 
-//< >
-public class ButtonCustome extends TableCell<PlatillosDAO,String> {
+public class ButtonCustometype extends TableCell<TipoPlatilloDAO,String> {
 
     private Button btnCelda;
-    private PlatillosDAO objPlatillo;
+    private TipoPlatilloDAO objTiplatillo;
 
-    public ButtonCustome(int opc){
+    public ButtonCustometype(int opc){
         if (opc==1){
             btnCelda=new Button("Editar");
             btnCelda.setOnAction(event -> {
 
-                objPlatillo = ButtonCustome.this.getTableView().getItems().get(ButtonCustome.this.getIndex());
-                new FrmPlatillos(ButtonCustome.this.getTableView(),objPlatillo);
+                objTiplatillo = ButtonCustometype.this.getTableView().getItems().get(ButtonCustometype.this.getIndex());
+                new FrmTplatillos(ButtonCustometype.this.getTableView(),objTiplatillo);
             });
         }
 
@@ -37,14 +36,14 @@ public class ButtonCustome extends TableCell<PlatillosDAO,String> {
                 if(result.get()==ButtonType.OK) {
                     //este te regresa los datos del objeto de esa linea
                     //el primer get llama la tableview, el segundo la lista desplegable y el tercero los datos
-                    objPlatillo = ButtonCustome.this.getTableView().getItems().get(ButtonCustome.this.getIndex());
+                    objTiplatillo = ButtonCustometype.this.getTableView().getItems().get(ButtonCustometype.this.getIndex());
                     //Executa la consulta de borrado
-                    objPlatillo.delPlatillo();
+                    objTiplatillo.delTipo();
 
                     //Vuelve a realizar la consulta para saber el contenido de la tabla
-                    ButtonCustome.this.getTableView().setItems(objPlatillo.getAllPlatillo());
+                    ButtonCustometype.this.getTableView().setItems(objTiplatillo.getAllTipo());
                     //Refresca la ventana mostrando el contenido
-                    ButtonCustome.this.getTableView().refresh();
+                    ButtonCustometype.this.getTableView().refresh();
                 }
             });
         }

@@ -1,7 +1,7 @@
 package sample.ui;
 
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import sample.models.TipoPlatilloDAO;
 
 public class Dashboard extends Stage {
 
@@ -12,7 +12,10 @@ public class Dashboard extends Stage {
     }
 
     private void CrearUI() {
+
+        new TipoPlatilloCRUD();
         new PlatilloCRUD();
+
     }
 }
 

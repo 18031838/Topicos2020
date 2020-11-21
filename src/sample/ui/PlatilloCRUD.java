@@ -31,14 +31,15 @@ public class PlatilloCRUD extends Stage {
     }
 
     private void CrearUI() {
+
         tbvPlatillos = new TableView<>();
         CrearTabla();
-        btnNuevo = new Button("Nuevo platillo");
-        btnNuevo.setOnAction(event -> {new FrmPlatillos();});
+        btnNuevo = new Button("Nuevo Platillo");
+        btnNuevo.setOnAction(event -> { new FrmPlatillos(tbvPlatillos,null); });
         vBox = new VBox();
         vBox.getChildren().addAll(tbvPlatillos,btnNuevo);
-        escena = new Scene(vBox, 300, 250);
-        
+        escena = new Scene(vBox,500,250);
+
     }
 
     private void CrearTabla() {

@@ -1,5 +1,6 @@
 package sample;
 
+import components.Hilo;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -38,6 +39,13 @@ public class Main extends Application implements EventHandler {
         primaryStage.show();
 
         Conexion.crearConexion();
+
+        /*Hilos
+        new Hilo("Flash").start();
+        new Hilo("Superman").start();
+        new Hilo("Sonic").start();
+        new Hilo("Mcqueen").start();*/
+
         //PRONTO
         //new Memorama();
     }
